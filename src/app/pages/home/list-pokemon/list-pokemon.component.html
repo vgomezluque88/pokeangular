@@ -1,0 +1,18 @@
+
+<h2>Lista de Pokémon</h2>
+
+<div class="pokemon-list">
+  <div class="pokemon-card" *ngFor="let pokemon of pokemons">
+    <!-- Mostrar la imagen cuando esté disponible -->
+    <img *ngIf="pokemon.image" [src]="pokemon.image" [alt]="pokemon.name">
+    <h3>{{ pokemon.name | titlecase }}</h3>
+    <a [routerLink]="['/pokemon', pokemon.name]">Ver detalles</a>
+  </div>
+</div>
+
+
+<!-- Botones de paginación -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="!prev">⬅️ Anterior</button>
+  <button (click)="nextPage()" [disabled]="!next">Siguiente ➡️</button>
+</div>
