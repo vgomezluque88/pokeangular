@@ -14,9 +14,12 @@
         box-shadow: var(--white) 0px 0px 10px 0px;
 
         .pokemon-card {
+            text-decoration: none;
+
             h3 {
                 text-align: center;
                 color: var(--white);
+
             }
 
             img {
@@ -28,6 +31,19 @@
             &.active {
                 img {
                     animation: scale-active 1s infinite;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                h3 {
+                    color: #ffcc00;
+                    text-shadow: 0 0 5px #ffcc00;
+                }
+
+                img {
+                    animation: scale-active 0.5s infinite;
                 }
             }
         }

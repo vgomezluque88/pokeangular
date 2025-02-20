@@ -9,17 +9,34 @@ body {
     background-attachment: fixed;
     overflow: hidden;
 
-    ::-webkit-scrollbar {
+    scrollbar-width: thin;
+    /* Para navegadores Firefox */
+    scrollbar-color: #ffcc00 #222;
+
+    /* Color de la barra y el fondo */
+    /* Scrollbar para navegadores WebKit (Chrome, Edge, Safari) */
+    .pokemon-list::-webkit-scrollbar {
         width: 10px;
+        /* Ancho de la barra */
     }
 
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: red;
+    .pokemon-list::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.6);
+        /* Fondo oscuro translúcido */
         border-radius: 10px;
+    }
+
+    .pokemon-list::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #ffcc00, #ff6600);
+        /* Degradado dorado-naranja */
+        border-radius: 10px;
+        border: 2px solid #222;
+        /* Bordes oscuros */
+    }
+
+    .pokemon-list::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, #ffcc00, #ff3300);
+        /* Efecto al pasar el cursor */
     }
 
     font-family: "Press Start 2P",
