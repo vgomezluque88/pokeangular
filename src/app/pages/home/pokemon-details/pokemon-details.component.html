@@ -1,21 +1,24 @@
 <div *ngIf="pokemon; else loading">
-    <h1>{{ pokemon.name | titlecase }}</h1>
-    <img [src]="pokemon.sprites?.front_default" [alt]="pokemon.name">
-    <p><strong>ID:</strong> {{ pokemon.id }}</p>
-    <p><strong>Experiencia Base:</strong> {{ pokemon.base_experience }}</p>
-  
-    <h3>Habilidades:</h3>
-    <ul>
-      <li *ngFor="let ability of pokemon.abilities">
-        <a [href]="ability.ability.url" target="_blank">{{ ability.ability.name | titlecase }}</a>
-        <span *ngIf="ability.is_hidden">(Oculta)</span>
-      </li>
-    </ul>
-  
-    <button (click)="goBack()">⬅️ Volver a la lista</button>
+  <h1>{{ pokemon.name | titlecase }}</h1>
+  <img [src]="pokemon.sprites?.front_default" [alt]="pokemon.name">
+  <p><strong>ID:</strong> {{ pokemon.id }}</p>
+  <p><strong>Experiencia Base:</strong> {{ pokemon.base_experience }}</p>
+
+  <h3>Habilidades:</h3>
+  <ul>
+    <li *ngFor="let ability of pokemon.abilities">
+      <a [href]="ability.ability.url" target="_blank">{{ ability.ability.name |
+        titlecase }}</a>
+      <span *ngIf="ability.is_hidden">(Oculta)</span>
+    </li>
+  </ul>
+  <div *ngFor="let stats of pokemon.stats">
+    <p>{{stats.base_stat}}</p>
+    <p>{{stats.stat.name}}</p>
   </div>
-  
-  <ng-template #loading>
-    <p>Cargando datos...</p>
-  </ng-template>
-   
+  <button (click)="goBack()">⬅️ Volver a la lista</button>
+</div>
+
+<ng-template #loading>
+  <p>Cargando datos...</p>
+</ng-template>

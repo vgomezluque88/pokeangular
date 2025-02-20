@@ -1,0 +1,47 @@
+
+<div class="header">
+    <ul>
+        <li [class.active]="activeMenu === 'inicio'"
+            (click)="setActive('inicio')">
+            <a href="/">Inicio</a>
+        </li>
+        <li [class.active]="activeMenu === 'pokemons'"
+            (click)="setActive('pokemons')">
+            <a href="/pokemons">Todos los Pokemons</a>
+        </li>
+        <li [class.active]="activeMenu === 'ciudades'"
+            (click)="setActive('ciudades')">
+            <a href="#">Clasificados por ciudades</a>
+        </li>
+        <li [class.active]="activeMenu === 'tipos'"
+            (click)="setActive('tipos')">
+            <a href="#">Clasificados por tipos</a>
+        </li>
+    </ul>
+
+</div>
+<div class="header-content">
+    <div *ngIf="data">
+        <h3 class="title">Name: {{ data.name }}</h3>
+
+        <div class="types">
+            <p class="title">Types: </p>
+            <div *ngFor="let type of data.types">
+                <p>{{type.type.name}}</p>
+            </div>
+        </div>
+        <img *ngIf="data.sprites?.front_default"
+            [src]="data.sprites.front_default" alt="Sprite">
+        <div class="title">{{data.height}}cm - {{data.weight}}kg</div>
+
+        <div class="stats">
+            <p class="title">Stats</p>
+            <div class="stats-content">
+                <div *ngFor="let stat of data.stats">
+                    <span>{{stat.stat.name}}: {{ stat.base_stat }}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

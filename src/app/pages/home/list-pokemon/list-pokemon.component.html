@@ -1,19 +1,21 @@
 
-<h2>Lista de Pokémon</h2>
 
-<div>
+<div class="pokemon">
+  <h2>Lista de Pokémon</h2>
+
   <div class="pokemon-list">
-    <div class="pokemon-card" *ngFor="let pokemon of pokemons">
+    <a [routerLink]="['/pokemon', pokemon.name]" class="pokemon-card"
+      *ngFor="let pokemon of pokemons" [attr.attr-url]="pokemon.url"
+      (mouseenter)="fetchData(pokemon.url)">
       <!-- Mostrar la imagen cuando esté disponible -->
       <img *ngIf="pokemon.image" [src]="pokemon.image" [alt]="pokemon.name">
       <h3>{{ pokemon.name | titlecase }}</h3>
-      <a [routerLink]="['/pokemon', pokemon.name]">Ver detalles</a>
-    </div>
+    </a>
   </div>
 
   <!-- Botones de paginación -->
   <div class="pagination">
-    <button (click)="prevPage()" [disabled]="!prev">⬅️ Anterior</button>
-    <button (click)="nextPage()" [disabled]="!next">Siguiente ➡️</button>
+    <button (click)="prevPage()" [disabled]="!prev">⬅️</button>
+    <button (click)="nextPage()" [disabled]="!next">➡️</button>
   </div>
 </div>

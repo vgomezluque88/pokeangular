@@ -4,12 +4,63 @@
 
     &-list {
         display: grid;
-        grid-template-columns: repeat(4, 25%);
+        grid-template-columns: repeat(5, 20%);
+        height: 80vh;
+        overflow: scroll;
+        overflow-x: hidden;
+        background: transparent;
+        backdrop-filter: blur(40px);
+        padding: 30px;
+        box-shadow: var(--white) 0px 0px 10px 0px;
+
+        .pokemon-card {
+            h3 {
+                text-align: center;
+                color: var(--white);
+            }
+
+            img {
+                display: flex;
+                margin: auto;
+
+            }
+
+            &.active {
+                img {
+                    animation: scale-active 1s infinite;
+                }
+            }
+        }
     }
 
     .pagination {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
         display: flex;
         justify-content: center;
         margin-top: 20px;
+        gap: 30px;
+
+        button {
+            color: white;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+        }
+
     }
+}
+
+
+@keyframes scale-active {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.6);
+    }
+
 }

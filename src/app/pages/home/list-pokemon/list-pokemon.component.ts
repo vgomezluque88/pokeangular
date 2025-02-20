@@ -25,7 +25,7 @@ export class ListPokemonComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Leer `offset` y `limit` de la URL
@@ -35,7 +35,9 @@ export class ListPokemonComponent implements OnInit {
       this.loadPokemons();
     });
   }
-
+  fetchData(url: string) {
+    this.apiService.updateUrl(url);
+  }
   getPokemonId(url: string): string {
     return url.split('/').filter(part => part).pop() || '1';
   }
@@ -53,7 +55,7 @@ export class ListPokemonComponent implements OnInit {
 
         this.next = data.next;
         this.prev = data.previous;
-        
+
         this.pokemons.forEach((pokemon) => {
           this.apiService.getPokemonById(pokemon.name).subscribe(
             (details) => {
