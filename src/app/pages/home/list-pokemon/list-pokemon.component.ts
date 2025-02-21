@@ -37,6 +37,11 @@ export class ListPokemonComponent implements OnInit, OnDestroy {
       this.offset = params['offset'] ? parseInt(params['offset'], 10) : 0;
       this.limit = params['limit'] ? parseInt(params['limit'], 10) : 20;
       this.loadPokemons();
+
+      // Inicia el proceso de actualización solo si hay Pokémon cargados
+      if (this.pokemons.length > 0) {
+        this.startUpdatingPokemons();
+      }
     });
   }
 
@@ -79,10 +84,7 @@ export class ListPokemonComponent implements OnInit, OnDestroy {
           );
         });
 
-        // Inicia el proceso de actualización solo si hay Pokémon cargados
-        if (this.pokemons.length > 0) {
-          this.startUpdatingPokemons();
-        }
+
       },
       (error) => {
         console.error('Error al obtener la lista de Pokémon:', error);
@@ -96,7 +98,7 @@ export class ListPokemonComponent implements OnInit, OnDestroy {
     }
 
     if (this.pokemons.length > 0) {
-      this.subscription = interval(3000).subscribe(() => {
+      this.subscription = interval(2500).subscribe(() => {
         const pokemon = this.pokemons[this.currentIndex];
         this.apiService.updateUrl(pokemon.url);
         this.currentIndex = (this.currentIndex + 1) % this.pokemons.length;
