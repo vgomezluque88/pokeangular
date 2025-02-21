@@ -5,8 +5,7 @@
 
   <div class="pokemon-list">
     <a [routerLink]="['/pokemon', pokemon.name]" class="pokemon-card"
-      *ngFor="let pokemon of pokemons" [attr.attr-url]="pokemon.url"
-      (mouseenter)="fetchData(pokemon.url)">
+      *ngFor="let pokemon of pokemons" [attr.attr-url]="pokemon.url">
       <!-- Mostrar la imagen cuando esté disponible -->
       <img *ngIf="pokemon.image" [src]="pokemon.image" [alt]="pokemon.name">
       <h3>{{ pokemon.name | titlecase }}</h3>

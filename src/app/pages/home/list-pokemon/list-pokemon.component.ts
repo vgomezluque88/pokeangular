@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Pokemon } from '../../../models/pokemon.model';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -13,13 +14,16 @@ import { Pokemon } from '../../../models/pokemon.model';
   styleUrl: './list-pokemon.component.scss'
 })
 
-export class ListPokemonComponent implements OnInit {
+export class ListPokemonComponent implements OnInit, OnDestroy {
   pokemons: Pokemon[] = [];
   next: string | null = null;
   prev: string | null = null;
   countPokemons: number = 0;
   offset: number = 0;
   limit: number = 20;
+
+  currentIndex = 0;
+  subscription!: Subscription;
 
   constructor(
     private apiService: ApiService,
@@ -35,9 +39,17 @@ export class ListPokemonComponent implements OnInit {
       this.loadPokemons();
     });
   }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe(); // Detiene el intervalo cuando el componente se destruye
+    }
+  }
+
   fetchData(url: string) {
     this.apiService.updateUrl(url);
   }
+
   getPokemonId(url: string): string {
     return url.split('/').filter(part => part).pop() || '1';
   }
@@ -66,11 +78,31 @@ export class ListPokemonComponent implements OnInit {
             }
           );
         });
+
+        // Inicia el proceso de actualización solo si hay Pokémon cargados
+        if (this.pokemons.length > 0) {
+          this.startUpdatingPokemons();
+        }
       },
       (error) => {
         console.error('Error al obtener la lista de Pokémon:', error);
       }
     );
+  }
+
+  startUpdatingPokemons(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe(); // Detiene cualquier intervalo anterior
+    }
+
+    if (this.pokemons.length > 0) {
+      this.subscription = interval(3000).subscribe(() => {
+        const pokemon = this.pokemons[this.currentIndex];
+        this.apiService.updateUrl(pokemon.url);
+        console.log(`Updated: ${pokemon.url}`);
+        this.currentIndex = (this.currentIndex + 1) % this.pokemons.length;
+      });
+    }
   }
 
   nextPage(): void {

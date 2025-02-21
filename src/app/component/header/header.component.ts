@@ -13,7 +13,16 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   activeMenu: string = 'inicio';
   data: any = null;
-
+  isMenuOpen = false;
+  toggleMenu() {
+    if (this.isMenuOpen) {
+      setTimeout(() => {
+        this.isMenuOpen = false;
+      }, 1000);
+    } else {
+      this.isMenuOpen = true;
+    }
+  }
   constructor(private apiService: ApiService) { }
 
   setActive(menu: string): void {
