@@ -99,7 +99,6 @@ export class ListPokemonComponent implements OnInit, OnDestroy {
       this.subscription = interval(3000).subscribe(() => {
         const pokemon = this.pokemons[this.currentIndex];
         this.apiService.updateUrl(pokemon.url);
-        console.log(`Updated: ${pokemon.url}`);
         this.currentIndex = (this.currentIndex + 1) % this.pokemons.length;
       });
     }
