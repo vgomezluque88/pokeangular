@@ -4,7 +4,6 @@
 
     &-list {
         display: grid;
-        grid-template-columns: repeat(5, 20%);
         height: 80vh;
         overflow: scroll;
         overflow-x: hidden;
@@ -12,6 +11,20 @@
         backdrop-filter: blur(40px);
         padding: 30px;
         box-shadow: var(--white) 0px 0px 10px 0px;
+        grid-template-columns: repeat(1, 1fr);
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (min-width: 1200px) {
+            grid-template-columns: repeat(4, 1fr);
+
+        }
 
         .pokemon-card {
             text-decoration: none;

@@ -1,4 +1,8 @@
 .body {
-    display: grid;
-    grid-template-columns: 20% 70%;
+
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 20% 70%;
+        gap: 10px;
+    }
 }

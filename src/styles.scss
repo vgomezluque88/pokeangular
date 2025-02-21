@@ -7,7 +7,13 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
+
+    @media screen and (max-width: 768px) {
+        /* Para navegadores Chrome, Edge, Safari */
+        overflow: hidden;
+
+
+    }
 
     scrollbar-width: thin;
     /* Para navegadores Firefox */
