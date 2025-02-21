@@ -10,8 +10,9 @@
         background: transparent;
         backdrop-filter: blur(40px);
         padding: 30px;
-        box-shadow: var(--white) 0px 0px 10px 0px;
         grid-template-columns: repeat(1, 1fr);
+        border: 2px solid #A0B4B4;
+        box-shadow: 0 0 10px #A0B4B4;
 
         @media (min-width: 768px) {
             grid-template-columns: repeat(2, 1fr);
@@ -28,6 +29,9 @@
 
         .pokemon-card {
             text-decoration: none;
+            color: black;
+            text-shadow: 3px 3px 0px #A0B4B4;
+
 
             h3 {
                 text-align: center;
@@ -51,8 +55,8 @@
                 cursor: pointer;
 
                 h3 {
-                    color: #ffcc00;
-                    text-shadow: 0 0 5px #ffcc00;
+                    color: #A0B4B4;
+                    text-shadow: 0 0 5px #A0B4B4;
                 }
 
                 img {

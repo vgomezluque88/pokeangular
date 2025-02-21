@@ -8,7 +8,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width: 768px) {
         /* Para navegadores Chrome, Edge, Safari */
         overflow: hidden;
 
@@ -17,7 +17,7 @@ body {
 
     scrollbar-width: thin;
     /* Para navegadores Firefox */
-    scrollbar-color: #ffcc00 #222;
+    scrollbar-color: #A0B4B4 #222;
 
     /* Color de la barra y el fondo */
     /* Scrollbar para navegadores WebKit (Chrome, Edge, Safari) */
@@ -33,7 +33,7 @@ body {
     }
 
     .pokemon-list::-webkit-scrollbar-thumb {
-        background: linear-gradient(45deg, #ffcc00, #ff6600);
+        background: linear-gradient(45deg, #A0B4B4, #ff6600);
         /* Degradado dorado-naranja */
         border-radius: 10px;
         border: 2px solid #222;
@@ -41,7 +41,7 @@ body {
     }
 
     .pokemon-list::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(45deg, #ffcc00, #ff3300);
+        background: linear-gradient(45deg, #A0B4B4, #ff3300);
         /* Efecto al pasar el cursor */
     }
 
