@@ -1,6 +1,8 @@
 .start-movil {
     display: flex;
     justify-content: space-between;
+    z-index: 1001;
+    position: relative;
 
     @media (min-width: 1024px) {
         display: none;
